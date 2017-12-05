@@ -15,4 +15,4 @@
 ### To run:
 1. Simply enter `python part2_3_4.py` in your terminal and you should observe new files `modified_train`,`dev.p2.out`, `dev.p3.out` and `dev.p4.out`
 2. You can enter `python evalScript.py dev.out dev.p2.out` to evaluate the F scores of the output files
-
+3. If you intende to change the input file, you will have to manually change it from the python script, and look for `load_original_train()` and `load_files()` functions and change the directory for train and dev.in files respectively. 
