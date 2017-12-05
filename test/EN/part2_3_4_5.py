@@ -225,7 +225,7 @@ sentiment_analysis("ambience")
 # In[252]:
 
 def load_files():
-    with open("dev.in", encoding="utf-8") as file:
+    with open("test.in", encoding="utf-8") as file:
         dev_in_list = file.readlines()
         dev_in_list = [x.strip() for x in dev_in_list]
         return dev_in_list
@@ -725,7 +725,7 @@ for sentence in sentences:
     singleStringToBeWritten = second_order_viterbi(sentence)
     giantStringToBeWritten += singleStringToBeWritten
 # print(giantStringToBeWritten)
-f = open("dev.p5.out","w+")
+f = open("test.p5.out","w+")
 f.write(giantStringToBeWritten)
 print("finished viterbi with second order")
 
