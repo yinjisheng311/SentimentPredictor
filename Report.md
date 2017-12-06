@@ -148,19 +148,12 @@ sentences = split_into_sentences(dev_in_list)
 ### Implementing Viterbi
 + There are then two parts to the Viterbi algorithm. Firstly, we have a Viterbi algorithm to recursively compute and store the scores to each tag in every layer of the sequence. The computation equation for the cases are:
 
-$$ \begin{align}
- & \\
-{\pi}(k,v)&= max_{u}\{{\pi}(k-1, u) * a_{u,v} * b_v(x_k)\}
-\end{align}
-$$
+![alt text](https://github.com/yinjisheng311/SentimentPredictor/blob/master/viterbi.png)
+
 
 + We then find the optimal maximum score and using this optimal score, coupled with the stored scores per layer, we back trace our path to find the optimal parent tags to each layer using the find_backward_path function. The equations involved in back tracing are: 
 
-$$ \begin{align}
- & \\
-{y_{n-1}^*}&= argmax_{u} \{{\pi}(n-1,u) * a_{u,y_n^*} \}
-\end{align}
-$$
+![alt text](https://github.com/yinjisheng311/SentimentPredictor/blob/master/viterbi_backtrack.png)
 
 + Hence, our Viterbi function will run the base case, recursive case and finally, in running the final case, it will incorporate the find_backward_path function. 
 
@@ -472,11 +465,7 @@ def store_second_order_transition():
 ### Implementing Second Order Viterbi
 + The algorithm follows the following equations to calculate the best scores for each word:
 
-$$ \begin{align}
- & \\
-{\pi(k,\langle u,v \rangle)}&= max_{u} \{{\pi}(k-1,\langle u,v \rangle) * a_{t,u,v} * b_v(x_k) \}
-\end{align}
-$$
+![alt text](https://github.com/yinjisheng311/SentimentPredictor/blob/master/viterbi_second_order.png)
 
 The pseudocode below follows the implementation of the second order viterbi using the ```giantSecondTransitionDict``` created earlier:
 ```
@@ -512,17 +501,7 @@ def second_order_viterbi(sentence):
 ### Backtracking in Second Order Viterbi
 + The code also follows the following equation to backtrack and find the optimal path given scores:
 
-$$ \begin{align}
- & \\
-{y_{n}^*}&= argmax_{u} \{{\pi}(n+1,\langle u,STOP \rangle) \}
-\end{align}
-$$
-
-$$ \begin{align}
- & \\
-{y_{k}^*}&= argmax_{t} \{{\pi}(k + 1,\langle t,y_{k+1}^* \rangle) * a_{u,y_{k+1}^*, y_{k+2}^*} \}
-\end{align}
-$$
+![alt text](https://github.com/yinjisheng311/SentimentPredictor/blob/master/viterbi_second_order_backtrack.png)
 
 The following pseudocode allows the discovery of the optimal path by backtracking from the optimal score stored at each word:
 ```
